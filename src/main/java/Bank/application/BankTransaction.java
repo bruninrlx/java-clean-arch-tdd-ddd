@@ -7,6 +7,8 @@ import Bank.domain.factory.RepositoryFactory;
 import Bank.domain.repository.AccountRepository;
 import Bank.domain.repository.ActivityRepository;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 
 public class BankTransaction {
@@ -18,7 +20,7 @@ public class BankTransaction {
         this.activityRepository = repositoryFactory.createActivityRepository();
     }
 
-    public void execute(BankTransactionInput bankTransactionInput){
+    public Map<String, String> execute(BankTransactionInput bankTransactionInput){
         Account sourceAccount = this.accountRepository.getAccountById(bankTransactionInput.getSourceAccountId());
         Account targetAccount = this.accountRepository.getAccountById(bankTransactionInput.getTargetAccountId());
         if(bankTransactionInput.getActivityType().equals("withdraw"))
@@ -38,6 +40,9 @@ public class BankTransaction {
             bankTransactionInput.getActivityType()
         );
         this.activityRepository.save(activity);
+        Map<String, String> output = new HashMap<>();
+        output.put("money transfered", activity.getMoney().toString());
+        return output;
     }
 
 }

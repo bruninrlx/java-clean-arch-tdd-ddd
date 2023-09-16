@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JpaAccountRepository extends JpaRepository<AccountMapper, String> {
+    AccountMapper findById (long id);
 }

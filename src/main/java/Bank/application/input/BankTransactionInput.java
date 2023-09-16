@@ -15,21 +15,27 @@ public class BankTransactionInput {
         long targetAccountId,
         BigDecimal money,
         String activityType
-    ){}
+    ){
+      this.sourceAccountId = sourceAccountId;
+      this.targetAccountId = targetAccountId;
+      this.money = money;
+      this.activityType = activityType;
+    }
 
     public long getSourceAccountId() {
-        return sourceAccountId;
+
+        return this.sourceAccountId;
     }
 
     public long getTargetAccountId() {
-        return targetAccountId;
+        return this.targetAccountId;
     }
 
     public BigDecimal getMoney() {
-        return money;
+        return this.money;
     }
 
     public String getActivityType() {
-        return activityType;
+        return this.activityType;
     }
 }
